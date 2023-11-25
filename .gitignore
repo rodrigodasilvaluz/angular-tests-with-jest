@@ -53,7 +53,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-# /reports
+/reports
 /src/translations/template.*
 /src/environments/.env.*
 /cypress/videos/
