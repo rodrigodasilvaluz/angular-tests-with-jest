@@ -40,7 +40,6 @@ export class FakeService {
     return this.http
       .get<JsonplaceholderInterface[]>(`https://jsonplaceholder.typicode.com/todos/${id}`)
       .pipe(
-        tap((data: JsonplaceholderInterface[]) => data),
         catchError(this.handleError('Failedto fetch dat'))
       );
   }
