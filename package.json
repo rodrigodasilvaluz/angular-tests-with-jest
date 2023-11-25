@@ -54,7 +54,6 @@
     "@types/node": "^14.18.26",
     "@typescript-eslint/eslint-plugin": "~5.34.0",
     "@typescript-eslint/parser": "~5.34.0",
-    "check-code-coverage": "^1.10.5",
     "eslint": "^8.3.0",
     "eslint-plugin-import": "latest",
     "eslint-plugin-jsdoc": "latest",

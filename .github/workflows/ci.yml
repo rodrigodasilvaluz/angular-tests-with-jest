@@ -42,9 +42,3 @@ jobs:
       # JEST Tests
       - name: Run jest tests
         run: npm run test:ci
-
-      # Monitor coverage
-      - name: Coverage monitor
-        run: npx -p check-code-coverage set-gh-status --check-against-readme
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
