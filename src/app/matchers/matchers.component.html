@@ -1,0 +1,12 @@
+<h2>Page Matchers!</h2>
+<p>Test 2 + 2 = {{ calc(2, 2) }}</p>
+<p>Test get object name {{ getObject() | json }}</p>
+<p>Test truthiness {{ getNull() | json }}</p>
+<p>Test truthiness {{ getZero() | json }}</p>
+<p>Test numbers with find a close, exact or equivalent value</p>
+<p>Test numbers with find a floating point number equal {{ getFloatNumber() | number }}</p>
+<p>Test string in object name {{ getObject().name }}</p>
+<p>Test match string in object name {{ getObject().name }} with not found "D"</p>
+<p>Test match string in object name {{ getObject().name }} with find "dri"</p>
+<p>Test array string get item {{ getItemArrCondiment(2) }}</p>
+<p>Test for exceptions</p>

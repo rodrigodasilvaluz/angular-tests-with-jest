@@ -9,10 +9,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HomeComponent } from './home/home.component';
+import { MatchersComponent } from './matchers/matchers.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule, BrowserAnimationsModule, AppRoutingModule],
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, MatchersComponent],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
 })
