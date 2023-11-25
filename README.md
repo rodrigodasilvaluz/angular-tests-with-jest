@@ -1,5 +1,5 @@
 # Angular Tests With Jest
-![check-code-coverage](https://img.shields.io/badge/code--coverage-100%25-brightgreen)
+![check-code-coverage](https://img.shields.io/badge/code--coverage-100%25-blue)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
 

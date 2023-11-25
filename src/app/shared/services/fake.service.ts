@@ -40,7 +40,7 @@ export class FakeService {
     return this.http
       .get<JsonplaceholderInterface[]>(`https://jsonplaceholder.typicode.com/todos/${id}`)
       .pipe(
-        tap((data: JsonplaceholderInterface[]) => console.log('Data Fetched', data)),
+        tap((data: JsonplaceholderInterface[]) => data),
         catchError(this.handleError('Failedto fetch dat'))
       );
   }
@@ -57,7 +57,7 @@ export class FakeService {
     return (error: HttpErrorResponse): Observable<any> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.log(error); // log to console instead
+      // console.log(error); // log to console instead
 
       const message = `server returned code ${error.status} with body "${error.error}"`;
       // TODO: batter job os transforming error for user consumption
