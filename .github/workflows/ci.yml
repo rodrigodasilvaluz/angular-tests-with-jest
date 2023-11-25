@@ -45,10 +45,6 @@ jobs:
 
       # Monitor coverage
       - name: Coverage monitor
-        uses: slavcodev/coverage-monitor-action@1.8.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          coverage_path: "reports/clover.xml"
-          threshold_alert: 10
-          threshold_warning: 50
-          threshold_metric: "lines"
+        run: npx -p check-code-coverage set-gh-status --check-against-readme
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
