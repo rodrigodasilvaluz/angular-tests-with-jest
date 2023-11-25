@@ -1,0 +1,39 @@
+{
+  "generator-ngx-rocket": {
+    "version": "11.0.0",
+    "props": {
+      "location": "path",
+      "strict": true,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "target": [
+        "web"
+      ],
+      "ui": "material",
+      "layout": "simple",
+      "features": [],
+      "languages": [
+        "en-US"
+      ],
+      "tools": [
+        "prettier",
+        "jest"
+      ],
+      "utility": [],
+      "deploy": "none",
+      "appName": "angular-tests-with-jest",
+      "projectName": "angular-tests-with-jest",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": [],
+      "pwa": false,
+      "auth": false,
+      "lazy": false,
+      "e2e": false,
+      "cypress": false,
+      "angulartics": false
+    }
+  }
+}
