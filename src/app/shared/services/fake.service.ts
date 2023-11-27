@@ -7,10 +7,11 @@ export interface JsonplaceholderInterface {
   id: number;
   title: string;
   completed: boolean;
+  time: number;
 }
 
 export interface ObsJsonplaceholderInterface {
-  success?: JsonplaceholderInterface[];
+  success?: JsonplaceholderInterface;
   error?: string;
 }
 
@@ -21,24 +22,24 @@ export class FakeService {
 
   constructor(private http: HttpClient) { }
 
-  getDataByIdV1(id: number): Observable<JsonplaceholderInterface[]> {
-    return this.http.get<JsonplaceholderInterface[]>(`https://jsonplaceholder.typicode.com/todos/${id}`);
+  getDataByFixedId(): Observable<JsonplaceholderInterface> {
+    return this.http.get<JsonplaceholderInterface>(`https://jsonplaceholder.typicode.com/todos/1`);
   }
 
-  getDataByIdV2(id: number): Observable<ObsJsonplaceholderInterface> {
+  getDataByIdWithMap(id: number): Observable<ObsJsonplaceholderInterface> {
     return this.http
-      .get<JsonplaceholderInterface[]>(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .get<JsonplaceholderInterface>(`https://jsonplaceholder.typicode.com/todos/${id}`)
       .pipe(
-        map((jsonplaceholder: JsonplaceholderInterface[]) => ({
+        map((jsonplaceholder: JsonplaceholderInterface) => ({
           success: jsonplaceholder,
         })),
         catchError(() => of({ error: 'Unable to load jsonplaceholder' }))
       );
   }
 
-  getDataByIdV3(id: number): Observable<ObsJsonplaceholderInterface> {
+  getDataByIdWithHandleError(id: number): Observable<ObsJsonplaceholderInterface> {
     return this.http
-      .get<JsonplaceholderInterface[]>(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .get<JsonplaceholderInterface>(`https://jsonplaceholder.typicode.com/todos/${id}`)
       .pipe(
         catchError(this.handleError('Failedto fetch dat'))
       );

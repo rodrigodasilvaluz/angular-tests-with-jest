@@ -20,26 +20,25 @@ describe('FakeService', () => {
   });
 
   // Test methods
-  describe('getDataByIdV1', () => {
-    it('Should test getDataByIdV1', () => {
-      const id = 1;
+  describe('getDataByFixedId', () => {
+    it('Should test getDataByFixedId', () => {
       const res = { success: 'Rodrigo' };
-      const url = `https://jsonplaceholder.typicode.com/todos/${id}`;
+      const url = `https://jsonplaceholder.typicode.com/todos/1`;
       jest.spyOn(httpClientSky, 'get').mockReturnValue(of(res));
-      service.getDataByIdV1(id);
+      service.getDataByFixedId();
       expect(httpClientSky.get).toBeCalledTimes(1);
       expect(httpClientSky.get).toHaveBeenCalledWith(url);
     });
   });
 
-  describe('getDataByIdV2', () => {
-    it('Should test getDataByIdV2', (done) => {
+  describe('getDataByIdWithMap', () => {
+    it('Should test getDataByIdWithMap', (done) => {
       const id = 1;
       const dat = 'Rodrigo';
       const res = { success: dat };
       const url = `https://jsonplaceholder.typicode.com/todos/${id}`;
       jest.spyOn(httpClientSky, 'get').mockReturnValue(of(dat));
-      service.getDataByIdV2(id).subscribe({
+      service.getDataByIdWithMap(id).subscribe({
         next: (data) => {
           expect(data).toEqual(res);
           done();
@@ -50,7 +49,7 @@ describe('FakeService', () => {
       expect(httpClientSky.get).toHaveBeenCalledWith(url);
     });
 
-    it('Should test getDataByIdV2 throw error', (done) => {
+    it('Should test getDataByIdWithMap throw error', (done) => {
       const id = 1;
       const errText = 'Unable to load jsonplaceholder';
       const errData = { error: errText };
@@ -61,7 +60,7 @@ describe('FakeService', () => {
       });
       const url = `https://jsonplaceholder.typicode.com/todos/${id}`;
       jest.spyOn(httpClientSky, 'get').mockReturnValue(throwError(() => errText));
-      service.getDataByIdV2(id).subscribe({
+      service.getDataByIdWithMap(id).subscribe({
         next: (data) => {
           expect(data).toEqual(errData);
           done();
@@ -73,13 +72,13 @@ describe('FakeService', () => {
     });
   });
 
-  describe('getDataByIdV3', () => {
-    it('Should test getDataByIdV3', (done) => {
+  describe('getDataByIdWithHandleError', () => {
+    it('Should test getDataByIdWithHandleError', (done) => {
       const id = 1;
       const res = 'Rodrigo';
       const url = `https://jsonplaceholder.typicode.com/todos/${id}`;
       jest.spyOn(httpClientSky, 'get').mockReturnValue(of(res));
-      service.getDataByIdV3(id).subscribe({
+      service.getDataByIdWithHandleError(id).subscribe({
         next: (data) => {
           expect(data).toEqual(res);
           done();
@@ -90,7 +89,7 @@ describe('FakeService', () => {
       expect(httpClientSky.get).toHaveBeenCalledWith(url);
     });
 
-    it('Should test getDataByIdV3 throw error', (done) => {
+    it('Should test getDataByIdWithHandleError throw error', (done) => {
       const id = 1;
       const err = new HttpErrorResponse({
         error: 'test 404 error',
@@ -99,7 +98,7 @@ describe('FakeService', () => {
       });
       const url = `https://jsonplaceholder.typicode.com/todos/${id}`;
       jest.spyOn(httpClientSky, 'get').mockReturnValue(throwError(() => err));
-      service.getDataByIdV3(id).subscribe({
+      service.getDataByIdWithHandleError(id).subscribe({
         next: (data) => console.log(data),
         error: (error) => {
           expect(error.message).toContain('test 404 error');
@@ -119,7 +118,8 @@ describe('FakeService', () => {
         userId: 1,
         id: 1,
         title: 'Rodrigo',
-        completed: true
+        completed: true,
+        time: 10,
       };
       const data = res;
       const url = `https://jsonplaceholder.typicode.com/todos/${id}`;

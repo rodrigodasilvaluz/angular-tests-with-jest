@@ -1,0 +1,6 @@
+<p>Page data!</p>
+<p>{{ greeting }}</p>
+<p *ngIf="serviceData">{{ serviceData.title }}</p>
+
+<p *ngIf="serviceDataWithMap?.error">Ocorreu um erro: {{ serviceDataWithMap.error }}</p>
+<p *ngIf="serviceDataWithMap?.success">{{ serviceDataWithMap.success?.title }}</p>

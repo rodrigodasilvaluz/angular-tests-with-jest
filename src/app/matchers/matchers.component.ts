@@ -10,8 +10,8 @@ interface ObsName {
   styleUrls: ['./matchers.component.scss'],
 })
 export class MatchersComponent implements OnInit {
-  public objName = { name: 'Rodrigo' };
-  public arrCondiment = [
+  objName = { name: 'Rodrigo' };
+  arrCondiment = [
     'bread',
     'egg',
     'milk',
