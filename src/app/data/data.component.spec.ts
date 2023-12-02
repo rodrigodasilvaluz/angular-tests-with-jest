@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DataComponent } from './data.component';
 import { FakeService } from '@app/shared/services/fake.service';
-import { of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -15,8 +15,12 @@ describe('DataComponent', () => {
   beforeEach(async () => {
     // Mock service
     fakeServiceMock = {
-      getDataByFixedId: jest.fn(),
-      // getDataByIdWithMap: jest.fn(),
+      getDataByFixedId(): Observable<any> {
+        return of(null);
+      },
+      getDataByIdWithMap(): Observable<any> {
+        return of(null);
+      },
     };
 
     // Mock route
@@ -44,7 +48,6 @@ describe('DataComponent', () => {
 
     fixture = TestBed.createComponent(DataComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
   });
 
   // Test create component
@@ -64,7 +67,6 @@ describe('DataComponent', () => {
 
       // Act
       jest.spyOn(fakeServiceMock, 'getDataByFixedId').mockReturnValue(of(expected));
-      // component.getServiceData();
       fixture.detectChanges();
 
       // Assert
@@ -81,7 +83,6 @@ describe('DataComponent', () => {
 
       // Act
       jest.spyOn(fakeServiceMock, 'getDataByFixedId').mockReturnValue(throwError(() => errorMessage));
-      // component.getServiceData();
       fixture.detectChanges();
 
       // Assert
@@ -89,39 +90,39 @@ describe('DataComponent', () => {
     });
   });
 
-  // describe('getServiceDataWithMap set serviceData and errorMessage', () => {
-  //   it('Should getDataByIdWithMap set serviceData', () => {
-  //     // Arrange
-  //     const expected = {
-  //       success: {
-  //         title: 'Rodrigo',
-  //       },
-  //     };
+  describe('getServiceDataWithMap set serviceData and errorMessage', () => {
+    it('Should getDataByIdWithMap set serviceData', () => {
+      // Arrange
+      const expected = {
+        success: {
+          title: 'Rodrigo',
+        },
+      };
 
-  //     // Act
-  //     jest.spyOn(fakeServiceMock, 'getDataByIdWithMap').mockReturnValue(of(expected));
-  //     component.getServiceDataWithMap();
+      // Act
+      jest.spyOn(fakeServiceMock, 'getDataByIdWithMap').mockReturnValue(of(expected));
+      fixture.detectChanges();
 
-  //     // Assert
-  //     expect(component.serviceDataWithMap.success?.title).toBe(expected.success.title);
-  //   });
+      // Assert
+      expect(component.serviceDataWithMap.success?.title).toBe(expected.success.title);
+    });
 
-  //   it('Should getServiceDataWithMap set errorMessage', () => {
-  //     // Arrange
-  //     const errorMessage = new HttpErrorResponse({
-  //       error: 'test 404 error',
-  //       status: 404,
-  //       statusText: 'Not found',
-  //     });
+    it('Should getServiceDataWithMap set errorMessage', () => {
+      // Arrange
+      const errorMessage = new HttpErrorResponse({
+        error: 'test 404 error',
+        status: 404,
+        statusText: 'Not found',
+      });
 
-  //     // Act
-  //     jest.spyOn(fakeServiceMock, 'getDataByIdWithMap').mockReturnValue(throwError(() => errorMessage));
-  //     component.getServiceDataWithMap();
+      // Act
+      jest.spyOn(fakeServiceMock, 'getDataByIdWithMap').mockReturnValue(throwError(() => errorMessage));
+      fixture.detectChanges();
 
-  //     // Assert
-  //     expect(component.errorServise).toBe('Not found');
-  //   });
-  // });
+      // Assert
+      expect(component.errorServise).toBe('Not found');
+    });
+  });
 
   // Test branches
   describe('getServiceData set greeting', () => {
@@ -135,7 +136,6 @@ describe('DataComponent', () => {
 
       // Act
       jest.spyOn(fakeServiceMock, 'getDataByFixedId').mockReturnValue(of(data));
-      // component.getServiceData();
       fixture.detectChanges();
 
       // Assert
@@ -152,7 +152,6 @@ describe('DataComponent', () => {
 
       // Act
       jest.spyOn(fakeServiceMock, 'getDataByFixedId').mockReturnValue(of(data));
-      // component.getServiceData();
       fixture.detectChanges();
 
       // Assert
@@ -169,7 +168,6 @@ describe('DataComponent', () => {
 
       // Act
       jest.spyOn(fakeServiceMock, 'getDataByFixedId').mockReturnValue(of(data));
-      // component.getServiceData();
       fixture.detectChanges();
 
       // Assert

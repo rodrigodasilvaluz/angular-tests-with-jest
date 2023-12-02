@@ -22,7 +22,7 @@ export class DataComponent implements OnInit {
 
   ngOnInit(): void {
     this.getServiceData();
-    // this.getServiceDataWithMap();
+    this.getServiceDataWithMap();
   }
 
   getServiceData(): void {
@@ -37,17 +37,17 @@ export class DataComponent implements OnInit {
     });
   }
 
-  // getServiceDataWithMap(): void {
-  //   const id: number = Number(this.route.snapshot.paramMap.get('id'));
-  //   this.fakeService.getDataByIdWithMap(id).subscribe({
-  //     next: (data) => {
-  //       this.serviceDataWithMap = data;
-  //     },
-  //     error: (err) => {
-  //       this.errorServise = err.statusText;
-  //     }
-  //   });
-  // }
+  getServiceDataWithMap(): void {
+    const id: number = Number(this.route.snapshot.paramMap.get('id'));
+    this.fakeService.getDataByIdWithMap(id).subscribe({
+      next: (data) => {
+        this.serviceDataWithMap = data;
+      },
+      error: (err) => {
+        this.errorServise = err.statusText;
+      }
+    });
+  }
 
   setGreeting(): void {
     if (this.serviceData.time < 10) {
